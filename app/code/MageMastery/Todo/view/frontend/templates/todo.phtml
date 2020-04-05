@@ -1,7 +1,7 @@
 <?php
 use Magento\Framework\View\Element\Template;
 
-//echo '<!-- ' . print_r($block->getData(), true) . '-->';
+echo '<!-- ' . print_r($block->getData(), true) . '-->';
 
 ?>
 <ul>
@@ -15,9 +15,7 @@ use Magento\Framework\View\Element\Template;
 <script type="text/x-magento-init">
     {
         "*": {
-            "Magento_Ui/js/core/app": {
-                "Magento_Ui/js/core/app": <?= $block->getJsLayout() ?>
-            }
+            "Magento_Ui/js/core/app": <?= $block->getJsLayout() ?>
         }
     }
 </script>
