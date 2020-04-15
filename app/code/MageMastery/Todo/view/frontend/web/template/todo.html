@@ -1,10 +1,11 @@
-<form>
 <div class="form-container">
     <input type="text"
         class="task-input-field"
            id="todo-task-input"
            name="task"
-            data-bind="value: newTaskLabel"
+            data-bind="
+                value: newTaskLabel,
+                event: {'keyup': checkKey}"
            placeholder="Add a new task..."
     /><!--ko-value="newTaskLabel"-->
     <div class="actions-toolbar">
@@ -20,7 +21,6 @@
         </div>
     </div>
 </div>
-</form>
 <!-- ko if: ($data.tasks) -->
 <ul class="tasks">
     <li repeat="foreach: tasks, item: 'task'">
