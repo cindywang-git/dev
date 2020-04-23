@@ -1,7 +1,9 @@
 <?php
 
 namespace MageMastery\Todo\Api;
-
+/**
+ * @api
+ */
 interface TaskRepositoryInterface
 {
     public function getList();
