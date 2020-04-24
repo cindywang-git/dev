@@ -1,9 +1,13 @@
 <?php
 namespace MageMastery\Todo\Service;
 
+use MageMastery\Todo\Api\Data\TaskSearchResultInterface;
+use MageMastery\Todo\Api\Data\TaskSearchResultInterfaceFactory;
 use MageMastery\Todo\Api\TaskRepositoryInterface;
 use MageMastery\Todo\Model\ResourceModel\Task;
 use MageMastery\Todo\Model\TaskFactory;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Magento\Framework\Api\SearchCriteriaInterface;
 
 class TaskRepository implements TaskRepositoryInterface
 {
@@ -17,20 +21,43 @@ class TaskRepository implements TaskRepositoryInterface
      */
     private $taskFactory;
 
+    /**
+     * @var TaskSearchResultInterface
+     */
+    private $searchResultFactory;
+
+    /**
+     * @var CollectionProcessorInterface
+     */
+    private $collectionProcessor;
+
+    /**
+     * TaskRepository constructor.
+     * @param Task $resource
+     * @param TaskFactory $taskFactory
+     * @param CollectionProcessorInterface $collectionProcessor
+     * @param TaskSearchResultInterfaceFactory $taskSearchResult
+     */
     public function __construct(
-        \MageMastery\Todo\Model\ResourceModel\Task $resource, 
-        \MageMastery\Todo\Model\TaskFactory $taskFactory
+        \MageMastery\Todo\Model\ResourceModel\Task $resource,
+        \MageMastery\Todo\Model\TaskFactory $taskFactory,
+        CollectionProcessorInterface $collectionProcessor,
+        TaskSearchResultInterfaceFactory $taskSearchResult
     )
     {
         $this->resource = $resource;
         $this->taskFactory = $taskFactory;
+        $this->collectionProcessor = $collectionProcessor;
+        $this->taskSearchResult = $taskSearchResult;
     }
 
-    public function getList()
+    public function getList(SearchCriteriaInterface $searchCriteria): TaskSearchResultInterface
     {
-
+        $searchResult = $this->searchResultFactory->create();
+        $searchResult->setSearchCriteria($searchCriteria);
+        $this->collectionProcessor->process($searchCriteria, $searchResult);
+        return $searchResult;
     }
-
     public function get(int $taskId)
     {
         $object = $this->taskFactory->create();
