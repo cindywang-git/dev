@@ -53,7 +53,7 @@ class  TaskRepository implements TaskRepositoryInterface
     public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria): TaskSearchResultInterface
     {
         $searchResult = $this->searchResultFactory->create();
-        $searchCriteria->setSearchCriteria($searchCriteria);
+        $searchResult->setSearchCriteria($searchCriteria);
         $this->collectionProcessor->process($searchCriteria, $searchResult);
         return $searchResult;
     }

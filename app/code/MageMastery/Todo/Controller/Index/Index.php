@@ -50,7 +50,7 @@ Class Index extends Action
 	}
 
     public function execute()
-    {echo '55';
+    {
         $criteria = $this->searchCriteriaBuilder->create();
         $task = $this->taskRepository->getList($criteria);
         return ;//$this->resultFactory->create(ResultFactory::TYPE_PAGE);

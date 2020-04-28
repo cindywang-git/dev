@@ -8,7 +8,7 @@ use Magento\Framework\Api\SearchResultsInterface;
 /**
  * @api
  */
-interface TaskSearchResultInterface extends SearchResultsInterface
+interface TaskSearchResultInterface extends \Magento\Framework\Api\SearchResultsInterface
 {
     /**
      * @return TaskInterface[]
