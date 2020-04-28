@@ -3,6 +3,7 @@
 namespace MageMastery\Todo\Controller\Index;
 
 use MageMastery\Todo\Service\TaskRepository;
+use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
@@ -13,29 +14,46 @@ use MageMastery\Todo\Model\TaskFactory;
 
 Class Index extends Action
 {
+    /**
+     * @var TaskResource
+     */
 	private $taskResource;
 
+    /**
+     * @var TaskFactory
+     */
 	private $taskFactory;
 
+    /**
+     * @var
+     */
 	private $taskRepository;
+
+    /**
+     * @var SearchCriteriaBuilder
+     */
+	private $searchCriteriaBuilder;
 
 	public function __construct(
 	    Context $context,
         TaskFactory $taskFactory,
         TaskResource $taskResource,
-        \MageMastery\Todo\Service\TaskRepository $taskRepository
+        TaskRepository $taskRepository,
+        SearchCriteriaBuilder $searchCriteriaBuilder
     )
 	{
 		$this->taskFactory = $taskFactory;
 		$this->taskResource = $taskResource;
 		$this->taskRepository = $taskRepository;
+		$this->searchCriteriaBuilder = $searchCriteriaBuilder;
 		parent::__construct($context);
 	}
 
     public function execute()
-    {
-        $task = $this->taskRepository->get(1);
-        var_dump($task->getData());
+    {echo '55';
+        $criteria = $this->searchCriteriaBuilder->create();
+        $task = $this->taskRepository->getList($criteria);
+        return ;//$this->resultFactory->create(ResultFactory::TYPE_PAGE);
 //        $task = $this->taskFactory->create();
 //        $task->setData([
 //            'label' => 'New Task 22',

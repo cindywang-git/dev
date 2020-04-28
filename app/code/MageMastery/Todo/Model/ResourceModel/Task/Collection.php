@@ -3,7 +3,7 @@
 namespace MageMastery\Todo\Model\ResourceModel\Task;
 
 use MageMastery\Todo\Api\Data\TaskSearchResultInterface;
-use Magento\Framework\Api\Search\SearchCriteriaInterface;
+use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use \MageMastery\Todo\Model\Task;
 use \MageMastery\Todo\Model\ResourceModel\Task as TaskResource;
@@ -35,7 +35,7 @@ class Collection extends AbstractCollection implements TaskSearchResultInterface
 
     /**
      * @param array $items
-     * @return \Magento\Framework\Api\SearchResultsInterface|void
+     * @return $this
      */
     public function setItems(array $items = null)
     {
