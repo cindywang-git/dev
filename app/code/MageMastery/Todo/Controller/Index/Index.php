@@ -2,6 +2,7 @@
 
 namespace MageMastery\Todo\Controller\Index;
 
+use MageMastery\Todo\Api\TaskManagementInterface;
 use MageMastery\Todo\Service\TaskRepository;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\App\Action\Action;
@@ -34,25 +35,35 @@ Class Index extends Action
      */
 	private $searchCriteriaBuilder;
 
+    /**
+     * @var TaskManagementInterface
+     */
+	private $taskManagement;
+
 	public function __construct(
 	    Context $context,
         TaskFactory $taskFactory,
         TaskResource $taskResource,
         TaskRepository $taskRepository,
-        SearchCriteriaBuilder $searchCriteriaBuilder
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        TaskManagementInterface $taskManagement
     )
 	{
 		$this->taskFactory = $taskFactory;
 		$this->taskResource = $taskResource;
 		$this->taskRepository = $taskRepository;
 		$this->searchCriteriaBuilder = $searchCriteriaBuilder;
+		$this->taskManagement = $taskManagement;
 		parent::__construct($context);
 	}
 
     public function execute()
     {
-        $criteria = $this->searchCriteriaBuilder->create();
-        $task = $this->taskRepository->getList($criteria);
+        $task = $this->taskRepository->get(1);
+        $task->setData('status', 'complete');
+        $this->taskManagement->save($task);
+
+        var_dump($this->taskRepository->getList($this->searchCriteriaBuilder->create())->getItems());
         return ;//$this->resultFactory->create(ResultFactory::TYPE_PAGE);
 //        $task = $this->taskFactory->create();
 //        $task->setData([
