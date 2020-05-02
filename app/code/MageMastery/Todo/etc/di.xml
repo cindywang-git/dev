@@ -5,4 +5,6 @@
     <preference for="MageMaster\Todo\Api\TaskRepositoryInterface" type="MageMaster\Todo\Service\TaskRepository"/>
     <preference for="MageMaster\Todo\Api\Data\TaskInterface" type="MageMaster\Todo\Model\Task"/>
     <preference for="MageMaster\Todo\Api\Data\TaskSearchResultInterface" type="MageMaster\Todo\Model\ResourceModel\Task\Collection"/>
+    <preference for="MMageMastery\Todo\Api\CustomerTaskListInterface" type="MageMastery\Todo\Service\CustomerTaskList"/>
+
 </config>
