@@ -1,77 +1,55 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageMastery\Todo\Controller\Index;
 
 use MageMastery\Todo\Api\TaskManagementInterface;
+use MageMastery\Todo\Model\ResourceModel\Task as TaskResource;
+use MageMastery\Todo\Model\TaskFactory;
 use MageMastery\Todo\Service\TaskRepository;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
-use MageMastery\Todo\Model\Task;
-use MageMastery\Todo\Model\ResourceModel\Task as TaskResource;
-use MageMastery\Todo\Model\TaskFactory;
 
-
-Class Index extends Action
+class Index extends Action
 {
-    /**
-     * @var TaskResource
-     */
-	private $taskResource;
+    private $taskResource;
 
-    /**
-     * @var TaskFactory
-     */
-	private $taskFactory;
+    private $taskFactory;
 
-    /**
-     * @var
-     */
-	private $taskRepository;
+    private $taskRepository;
 
-    /**
-     * @var SearchCriteriaBuilder
-     */
-	private $searchCriteriaBuilder;
+    private $searchCriteriaBuilder;
 
-    /**
-     * @var TaskManagementInterface
-     */
-	private $taskManagement;
+    private $taskManagement;
 
-	public function __construct(
-	    Context $context,
+    public function __construct(
+        Context $context,
         TaskFactory $taskFactory,
-        TaskResource $taskResource,
-        TaskRepository $taskRepository,
+        TaskResource $task,
+        TaskRepository $repository,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         TaskManagementInterface $taskManagement
-    )
-	{
-		$this->taskFactory = $taskFactory;
-		$this->taskResource = $taskResource;
-		$this->taskRepository = $taskRepository;
-		$this->searchCriteriaBuilder = $searchCriteriaBuilder;
-		$this->taskManagement = $taskManagement;
-		parent::__construct($context);
-	}
+    ) {
+        $this->taskFactory = $taskFactory;
+        $this->taskResource = $task;
+        $this->taskRepository = $repository;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->taskManagement = $taskManagement;
+        parent::__construct($context);
+    }
 
     public function execute()
     {
         $task = $this->taskRepository->get(1);
         $task->setData('status', 'complete');
+
         $this->taskManagement->save($task);
 
-        var_dump($this->taskRepository->getList($this->searchCriteriaBuilder->create())->getItems());
-        return ;//$this->resultFactory->create(ResultFactory::TYPE_PAGE);
-//        $task = $this->taskFactory->create();
-//        $task->setData([
-//            'label' => 'New Task 22',
-//            'status' =>  'open',
-//            'customer_id' => 1
-//        ]);
-//        $this->taskResource->save($task->getData());
-        //return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+        var_dump($this->taskRepository->get(1));
+
+        return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
     }
 }

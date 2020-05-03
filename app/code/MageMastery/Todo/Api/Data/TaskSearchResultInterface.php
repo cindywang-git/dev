@@ -1,14 +1,15 @@
 <?php
 
-//declare(strict_type=1);
+declare(strict_types=1);
 
 namespace MageMastery\Todo\Api\Data;
+
 use Magento\Framework\Api\SearchResultsInterface;
 
 /**
  * @api
  */
-interface TaskSearchResultInterface extends \Magento\Framework\Api\SearchResultsInterface
+interface TaskSearchResultInterface extends SearchResultsInterface
 {
     /**
      * @return TaskInterface[]
@@ -17,7 +18,6 @@ interface TaskSearchResultInterface extends \Magento\Framework\Api\SearchResults
 
     /**
      * @param TaskInterface[] $items
-     * @return SearchResultsInterface
      */
-    public function setItems(array $items);
+    public function setItems(array $items = null);
 }

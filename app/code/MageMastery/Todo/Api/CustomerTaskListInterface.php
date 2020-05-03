@@ -2,6 +2,8 @@
 
 namespace MageMastery\Todo\Api;
 
+use MageMastery\Todo\Api\Data\TaskInterface;
+
 /**
  * @api
  */

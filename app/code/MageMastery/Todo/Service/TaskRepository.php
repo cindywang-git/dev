@@ -7,23 +7,24 @@ use MageMastery\Todo\Api\TaskRepositoryInterface;
 use MageMastery\Todo\Model\ResourceModel\Task;
 use MageMastery\Todo\Model\TaskFactory;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Magento\Framework\Api\SearchCriteriaInterface;
 
 class  TaskRepository implements TaskRepositoryInterface
 {
     /**
-     * @var \MageMastery\Todo\Model\ResourceModel\Task
+     * @var Task
      */
     private $resource;
 
     /**
-     * @var \MageMastery\Todo\Model\TaskFactory
+     * @var TaskFactory
      */
     private $taskFactory;
 
     /**
-     * @var TaskSearchResultInterface
+     * @var TaskSearchResultInterfaceFactory
      */
-    private $searchResultFactory;
+    private $searchResultsFactory;
 
     /**
      * @var CollectionProcessorInterface
@@ -35,26 +36,27 @@ class  TaskRepository implements TaskRepositoryInterface
      * @param Task $resource
      * @param TaskFactory $taskFactory
      * @param CollectionProcessorInterface $collectionProcessor
-     * @param TaskSearchResultInterfaceFactory $taskSearchResult
+     * @param TaskSearchResultInterfaceFactory $searchResultsFactory
      */
     public function __construct(
-        \MageMastery\Todo\Model\ResourceModel\Task $resource,
-        \MageMastery\Todo\Model\TaskFactory $taskFactory,
+        Task $resource,
+        TaskFactory $taskFactory,
         CollectionProcessorInterface $collectionProcessor,
-        TaskSearchResultInterfaceFactory $searchResultFactory
-    )
-    {
+        TaskSearchResultInterfaceFactory $searchResultsFactory
+    ) {
         $this->resource = $resource;
         $this->taskFactory = $taskFactory;
         $this->collectionProcessor = $collectionProcessor;
-        $this->searchResultFactory = $searchResultFactory;
+        $this->searchResultsFactory = $searchResultsFactory;
     }
 
-    public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria): TaskSearchResultInterface
+    public function getList(SearchCriteriaInterface $searchCriteria): TaskSearchResultInterface
     {
-        $searchResult = $this->searchResultFactory->create();
+        $searchResult = $this->searchResultsFactory->create();
         $searchResult->setSearchCriteria($searchCriteria);
+
         $this->collectionProcessor->process($searchCriteria, $searchResult);
+
         return $searchResult;
     }
     public function get(int $taskId)
