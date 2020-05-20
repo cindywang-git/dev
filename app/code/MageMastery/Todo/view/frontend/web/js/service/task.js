@@ -22,6 +22,15 @@ define(['mage/storage'], function(storage){
                   task: task
               })
           );
-        }
+        },
+
+        create: async function (task) {
+            return await storage.post(
+                'rest/V1/customer/todo/task/create',
+                JSON.stringify({
+                    task: task
+                })
+            );
+        },
     };
 });
