@@ -43,13 +43,6 @@ class Index extends Action
 
     public function execute()
     {
-        $task = $this->taskRepository->get(1);
-        $task->setData('status', 'complete');
-
-        $this->taskManagement->save($task);
-
-        var_dump($this->taskRepository->get(1));
-
         return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
     }
 }
