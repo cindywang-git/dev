@@ -42,7 +42,7 @@
     </li>
 </ul>
 <!-- /ko -->
-<!-- ko if: (tasks().length == 0) -->
+<!-- ko ifnot: ($data.tasks) -->
 <div class="message info empty">
     <span>There are no open tasks. Add a new one.</span>
 </div>
