@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MageMastery\Todo\Service;
 
-use MageMaster\Todo\Api\TaskStatusManagementInterface;
+use MageMastery\Todo\Api\TaskStatusManagementInterface;
 use MageMastery\Todo\Api\TaskManagementInterface;
 use MageMastery\Todo\Api\TaskRepositoryInterface;
 use MageMastery\Todo\Model\Task;
@@ -14,12 +14,12 @@ class TaskStatusManagement implements TaskStatusManagementInterface
     /**
      * @var TaskRepositoryInterface
      */
-    private $repository;
+    private $taskRepository;
 
     /**
      * @var TaskManagementInterface
      */
-    private $management;
+    private $taskManagement;
 
     /**
      * TaskStatusManagement constructor.
@@ -31,7 +31,7 @@ class TaskStatusManagement implements TaskStatusManagementInterface
         TaskManagementInterface $taskManagement
     ){
         $this->taskRepository = $taskRepository;
-        $this->management = $taskManagement;
+        $this->taskManagement = $taskManagement;
     }
 
     public function change(int $taskId, string $status): bool
@@ -39,9 +39,9 @@ class TaskStatusManagement implements TaskStatusManagementInterface
         if(!in_array($status, ['open','complete'])){
             return false;
         }
-        $task = $this->repository->get($taskId);
+        $task = $this->taskRepository->get($taskId);
         $task->setData(Task::STATUS, $status);
-        $this->management->save($task);
+        $this->taskManagement->save($task);
 
         return true;
     }
