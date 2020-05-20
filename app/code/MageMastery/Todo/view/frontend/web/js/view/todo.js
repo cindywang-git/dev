@@ -44,6 +44,12 @@ define([
                actions: {
                    confirm: function () {
                        var tasks = [];
+
+                       taskService.delete(self.tasks().find(function (task) {
+                           if(task.task_id === taskId){
+                            return task;
+                           }
+                       }));
                        if (self.tasks().length === 1){
                            this.tasks(tasks);
                            return;
