@@ -23,4 +23,22 @@ interface TaskInterface
      * @return string
      */
     public function getLabel(): string;
+
+    /**
+     * @param int $taskId
+     * @return mixed
+     */
+    public function setTaskId(int $taskId);
+
+    /**
+     * @param string $status
+     * @return mixed
+     */
+    public function setStatus(string $status);
+
+    /**
+     * @param string $label
+     * @return mixed
+     */
+    public function setLabel(string $label);
 }
