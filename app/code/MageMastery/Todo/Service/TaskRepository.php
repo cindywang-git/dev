@@ -1,6 +1,7 @@
 <?php
 namespace MageMastery\Todo\Service;
 
+use MageMastery\Todo\Api\Data\TaskInterface;
 use MageMastery\Todo\Api\Data\TaskSearchResultInterface;
 use MageMastery\Todo\Api\Data\TaskSearchResultInterfaceFactory;
 use MageMastery\Todo\Api\TaskRepositoryInterface;
@@ -59,7 +60,7 @@ class  TaskRepository implements TaskRepositoryInterface
 
         return $searchResult;
     }
-    public function get(int $taskId)
+    public function get(int $taskId): TaskInterface
     {
         $object = $this->taskFactory->create();
         $this->resource->load($object, $taskId);
