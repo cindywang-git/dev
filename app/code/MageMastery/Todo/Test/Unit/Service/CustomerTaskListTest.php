@@ -62,7 +62,7 @@ class CustomerTaskListTest extends TestCase
     public function testGetList()
     {
         $expectedTaskLabel = 'Mage Mastery';
-        $expectedTaskLabel2 = 'My Unite Test';
+        $expectedTaskLabel2 = 'My Unit Test';
         $task1 = $this->getMockForAbstractClass(
             TaskInterface::class,
             [],
