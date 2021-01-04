@@ -5,7 +5,7 @@ namespace MageMastery\Todo\Test\Unit\Service;
 
 use MageMastery\Todo\Service\CustomerTaskList;
 use MageMastery\Todo\Service\TaskRepository;
-use Magento\Framework\Api\SearchCriteriaBuilder;
+use Magento\Framework\Api\Search\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

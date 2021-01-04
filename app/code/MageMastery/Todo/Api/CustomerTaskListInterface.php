@@ -11,7 +11,7 @@ interface CustomerTaskListInterface
 {
     /**
      * @param int $customerId
-     * @return mixed
+     * @return TaskInterface[]
      */
     public function getList(int $customerId);
 }
