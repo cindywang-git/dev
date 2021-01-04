@@ -6,8 +6,8 @@ namespace MageMastery\Todo\Service;
 
 use MageMastery\Todo\Api\CustomerTaskListInterface;
 use MageMastery\Todo\Api\TaskRepositoryInterface;
+use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\SearchCriteriaBuilder;
-use MageMastery\Todo\Api\Data\TaskInterface;
 
 class CustomerTaskList implements CustomerTaskListInterface
 {
@@ -28,19 +28,27 @@ class CustomerTaskList implements CustomerTaskListInterface
      */
     public function __construct(
         TaskRepositoryInterface $taskRepository,
-        SearchCriteriaBuilder $searchCriteriaBuilder
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        FilterBuilder $filterBuilder
     ) {
         $this->taskRepository = $taskRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->filterBuilder = $filterBuilder;
     }
 
     /**
-     * @return TaskInterface[]
+     * @inheritDoc
      */
-    public function getList()
+    public function getList(int $customerId): array
     {
+        $this->searchCriteriaBuilder->addFilter(
+            $this->filterBuilder->create()
+                ->setField('customer_id')
+                ->setValue($customerId)
+        );
+        $searchCriteria = $this->searchCriteriaBuilder->create();
         return $this->taskRepository
-            ->getList($this->searchCriteriaBuilder->create())
+            ->getList($searchCriteria)
             ->getItems();
     }
 }
