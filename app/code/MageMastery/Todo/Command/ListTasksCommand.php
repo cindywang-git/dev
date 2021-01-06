@@ -7,17 +7,18 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Magento\Framework\Console\Cli;
+use Symfony\Component\Console\Input\InputArgument;
 
-class ListTasksCommand extends Command
+class ListTasksCommand extends \Symfony\Component\Console\Command\Command
 {
     const NAME = 'magemastery:todo:task-list';
 
     protected function configure()
     {
-        $this->setName(self::NAME)
-            ->setDefinition(
-                'Provides a list of tasks'
-            );
+        $this->setName(self::NAME);
+        $this->setDescription(
+            'provide a list of task'
+        );
         parent::configure();
     }
 
