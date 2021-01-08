@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="MageMastery_Todo::todo"
+             title="MAGE MASTERY"
+             module="MageMastery_Todo"
+             sortOrder="100"
+             parent="Magento_Customer::customer"
+             resource="Magento_Customer::customer"
+         />
+        <add id="MageMastery_Todo::todo_task"
+             title="TODO List"
+             module="MageMastery_Todo"
+             sortOrder="110"
+             action="todo/task/index"
+             parent="MageMastery_Todo::todo"
+             resource="MageMastery_Todo::todo"
+        />
+    </menu>
+</config>
