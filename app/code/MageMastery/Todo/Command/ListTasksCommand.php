@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Magento\Framework\Console\Cli;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Helper\Table;
 
 class ListTasksCommand extends Command
 {
@@ -45,9 +46,15 @@ class ListTasksCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $taskSearchResult = $this->taskRespository->getList($this->searchCriteriaBuilder->create());
+        $table = new Table($output);
+        $table->setHeaders(['ID','Label','Status','Customer ID']);
+        $rows = [];
         foreach($taskSearchResult->getItems() as $task){
-            $output->writeln($task->getTaskId().' '.$task->getLabel().'('.$task->getStatus().')');
+            $rows[]=[$task->getTaskId(),$task->getLabel(),$task->getStatus(),$task->getData('customer_id')];
         }
+        $table->setRows($rows);
+        $table->setStyle('box-double');
+        $table->render();
         return Cli::RETURN_SUCCESS;
     }
 }
