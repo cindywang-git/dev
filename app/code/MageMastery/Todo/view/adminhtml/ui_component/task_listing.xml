@@ -39,7 +39,7 @@
     <columns name="todo_task_listing">
         <column name="task_id">
             <settings>
-                <filter>textRanger</filter>
+                <filter>textRange</filter>
                 <label translate="true">ID</label>
                 <sorting>desc</sorting>
             </settings>
@@ -58,6 +58,7 @@
         </column>
         <column name="customer_id" class="MageMastery\Todo\Ui\TaskCustomerColumn">
             <settings>
+                <filter>text</filter>
                 <label translate="true">Customer</label>
                 <sortable>false</sortable>
             </settings>
