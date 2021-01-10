@@ -27,10 +27,29 @@
         </dataProvider>
     </dataSource>
     <columns name="todo_task_listing">
+        <column name="task_id">
+            <settings>
+                <filter>textRanger</filter>
+                <label translate="true">ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
         <column name="label">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Label</label>
+            </settings>
+        </column>
+        <column name="status">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <column name="customer_id">
+            <settings>
+                <label translate="true">Customer</label>
+                <sortable>false</sortable>
             </settings>
         </column>
     </columns>
