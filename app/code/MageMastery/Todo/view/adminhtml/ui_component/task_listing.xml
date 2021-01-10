@@ -46,7 +46,7 @@
                 <label translate="true">Status</label>
             </settings>
         </column>
-        <column name="customer_id">
+        <column name="customer_id" class="MageMastery\Todo\Ui\TaskCustomerColumn">
             <settings>
                 <label translate="true">Customer</label>
                 <sortable>false</sortable>
