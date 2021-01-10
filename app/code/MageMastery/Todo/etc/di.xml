@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="MageMastery\Todo\Api\TaskManagementInterface" type="MageMastery\Todo\Service\TaskManagement" />
     <preference for="MageMastery\Todo\Api\TaskRepositoryInterface" type="MageMastery\Todo\Service\TaskRepository" />
     <preference for="MageMastery\Todo\Api\Data\TaskInterface" type="MageMastery\Todo\Model\Task" />
     <preference for="MageMastery\Todo\Api\Data\TaskSearchResultInterface" type="MageMastery\Todo\Model\ResourceModel\Task\Collection" />
     <preference for="MageMastery\Todo\Api\CustomerTaskListInterface" type="MageMastery\Todo\Service\CustomerTaskList" />
     <preference for="MageMastery\Todo\Api\TaskStatusManagementInterface" type="MageMastery\Todo\Service\TaskStatusManagement" />
-
-    <type name="Magento\Framework\Console\CommandListInterface">
+    <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="mageMateryTodoTaskList" xsi:type="object">MageMastery\Todo\Command\ListTasksCommand</item>
+                <item name="magematery_todo_tasklist" xsi:type="object">MageMastery\Todo\Command\ListTasksCommand</item>
             </argument>
         </arguments>
     </type>

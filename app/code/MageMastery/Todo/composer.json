@@ -1,5 +1,5 @@
 {
-    "name": "magemastery/todo",
+    "name": "magemastery/todo2",
     "description": "Todo extension for Magento 2",
     "type": "magento2-module",
     "license": "MIT",
@@ -27,7 +27,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "MageMastery\\Todo\\": ""
+            "MageMastery\\Todo2\\": ""
         }
     }
 }

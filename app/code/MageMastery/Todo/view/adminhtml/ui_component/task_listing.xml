@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_components.xsd">
-
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">task_listing.todo_task_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>todo_task_listing</spinner>
+        <deps>
+            <dep>task_listing.todo_task_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="todo_task_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">task_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render" />
+        </settings>
+        <dataProvider class="Magento\Framwork\View\Element\UiComponent\DataProvider\DataProvider" name="todo_task_listing_data_source">
+            <settings>
+                <primaryFieldName>task_id</primaryFieldName>
+                <requestFieldName>task_id</requestFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <columns name="todo_task_listing">
+        <column name="label">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Label</label>
+            </settings>
+        </column>
+    </columns>
 </listing>
