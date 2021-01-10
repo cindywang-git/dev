@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_components.xsd">
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
             <item name="provider" xsi:type="string">task_listing.todo_task_listing_data_source</item>
@@ -19,7 +19,7 @@
             </storageConfig>
             <updateUrl path="mui/index/render" />
         </settings>
-        <dataProvider class="Magento\Framwork\View\Element\UiComponent\DataProvider\DataProvider" name="todo_task_listing_data_source">
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="todo_task_listing_data_source">
             <settings>
                 <primaryFieldName>task_id</primaryFieldName>
                 <requestFieldName>task_id</requestFieldName>

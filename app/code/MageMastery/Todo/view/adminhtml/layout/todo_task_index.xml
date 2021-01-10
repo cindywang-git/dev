@@ -2,7 +2,7 @@
 <page xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
     <body>
         <referenceBlock name="content">
-            <argument name="task_listing" />
+            <uiComponent name="task_listing" />
         </referenceBlock>
     </body>
 </page>
