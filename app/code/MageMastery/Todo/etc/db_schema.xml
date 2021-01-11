@@ -14,7 +14,7 @@
 		<column xsi:type="int" name="customer_id"
 			padding="10"
 			unsigned="true"
-			nullable="true" 
+			nullable="true"
 			identity="false"
 			comment="Customer ID" />
 		<constraint xsi:type="primary" referenceId="PRIMARY">
@@ -28,6 +28,12 @@
 			referenceColumn="entity_id"
 			onDelete="CASCADE" />
 
+        <index referenceId="MAGEMASTERY_TODO_TASK_LABEL" indexType="fulltext">
+            <column name="label" />
+        </index>
+        <index referenceId="MAGEMASTERY_TODO_TASK_STATUS" indexType="fulltext">
+            <column name="status" />
+        </index>
 	</table>
 
 </schema>
